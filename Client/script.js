@@ -39,6 +39,7 @@ function saveTodo() {
                 value : index === EditTodoId ? todoValue : todo.value
             }));
             EditTodoId = -1;
+            todoInput.value = '';
         }
         else {
             const todo = {
@@ -46,11 +47,9 @@ function saveTodo() {
                 checked : false,
                 color : '#' + Math.floor(Math.random()*16777215).toString(16)
             }
+            todos.push(todo);
+            todoInput.value = '';
         }
-        
-    
-        todos.push(todo);
-        todoInput.value = '';
     }
 }
 
