@@ -109,3 +109,10 @@ function editTodo(todoId) {
     todoInput.value = todos[todoId].value;
     EditTodoId = todoId;
 }
+
+// DELETE A TODO
+function deleteTodo(todoId) {
+    todos = todos.filter((todo, index) => index != todoId);
+    EditTodoId = -1;
+    renderTodos();
+}
