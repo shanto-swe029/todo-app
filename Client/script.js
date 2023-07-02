@@ -58,3 +58,24 @@ function renderTodos() {
         `
     })
 }
+
+// CLICK EVENT LISTENER FOR ALL THE TODOS
+todosListEl.addEventListener('click', (event) => {
+    const target = event.target;
+    const parentElement = target.parentElement;
+
+    if( parentElement.className !== 'todo' ) return;
+
+    // TODO ID
+    const todo = parentElement;
+    const todoId = Number(todo.id);
+
+    // Target Action
+    const action = target.dataset.action;
+
+    action === "check" && checkTodo(todoId);
+    action === "edit" && editTodo(todoId);
+    action === "delete" && deleteTodo(todoId);
+});
+
+// CHECK A TODO
