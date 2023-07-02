@@ -52,7 +52,7 @@ function renderTodos() {
                     src="${todo.checked ? 'img/circle-marked.png' : 'img/circle-unmarked.png'}" 
                     class="img-icon-small"
                     data-action="check">
-                <p class="" data-action="check">${todo.value}</p>
+                <p class="${todo.checked ? 'checked' : ''}" data-action="check">${todo.value}</p>
                 <img src="img/edit.png" 
                     class="img-icon-small"
                     data-action="edit">
