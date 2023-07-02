@@ -5,6 +5,7 @@ const todosListEl = document.getElementById("todos-list");
 
 // VARS
 let todos=[];
+let EditTodoId = -1;
 
 // FORM SUBMISSION
 form.addEventListener('submit', function(event) {
@@ -31,11 +32,22 @@ function saveTodo() {
         alert("This todo already exists");
     }
     else {
-        const todo = {
-            value : todoValue,
-            checked : false,
-            color : '#' + Math.floor(Math.random()*16777215).toString(16)
+        if( EditTodoId >= 0 ) {
+            // update the todo
+            todos = todos.map((todo, index) => ({
+                ...todo, 
+                value : index === EditTodoId ? todoValue : todo.value
+            }));
+            EditTodoId = -1;
         }
+        else {
+            const todo = {
+                value : todoValue,
+                checked : false,
+                color : '#' + Math.floor(Math.random()*16777215).toString(16)
+            }
+        }
+        
     
         todos.push(todo);
         todoInput.value = '';
@@ -91,4 +103,10 @@ function checkTodo(todoId) {
     }));
 
     renderTodos();
+}
+
+// EDIT A TODO
+function editTodo(todoId) {
+    todoInput.value = todos[todoId].value;
+    EditTodoId = todoId;
 }
