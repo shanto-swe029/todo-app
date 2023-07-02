@@ -84,3 +84,11 @@ todosListEl.addEventListener('click', (event) => {
 });
 
 // CHECK A TODO
+function checkTodo(todoId) {
+    todos = todos.map((todo, index) => ({
+        ...todo, 
+        checked : index === todoId ? !todo.checked : todo.checked
+    }));
+
+    renderTodos();
+}
