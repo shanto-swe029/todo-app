@@ -50,10 +50,15 @@ function renderTodos() {
             <div class="todo" id= ${index}>
                 <img 
                     src="${todo.checked ? 'img/circle-marked.png' : 'img/circle-unmarked.png'}" 
-                    class="img-icon-small">
-                <p class="${todo.checked ? 'checked' : ''}">${todo.value}</p>
-                <img src="img/edit.png" class="img-icon-small">
-                <img src="img/trash-red.png" class="img-icon-small">
+                    class="img-icon-small"
+                    data-action="check">
+                <p class="${todo.checked ? 'checked' : ''}" data-action="check">${todo.value}</p>
+                <img src="img/edit.png" 
+                    class="img-icon-small"
+                    data-action="edit">
+                <img src="img/trash-red.png" 
+                    class="img-icon-small"
+                    data-action="delete">
             </div>
         `
     })
