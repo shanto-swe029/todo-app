@@ -1,11 +1,15 @@
 // SELECT ELEMENTS
-const form = document.getElementById("todoform");
-const todoInput = document.getElementById("newtodo");
-const todosListEl = document.getElementById("todos-list");
+const form = document.getElementById('todoform');
+const todoInput = document.getElementById('newtodo');
+const todosListEl = document.getElementById('todos-list');
+const notificationEl = document.querySelector('.notification');
 
 // VARS
 let todos=[];
 let EditTodoId = -1;
+
+//1st render
+renderTodos();
 
 // FORM SUBMISSION
 form.addEventListener('submit', function(event) {
@@ -26,10 +30,10 @@ function saveTodo() {
     const isDuplicate = todos.some( (todo) => todo.value.toUpperCase() === todoValue.toUpperCase() );
 
     if( isEmpty ) {
-        alert("Todo's input is empty");
+        showNotification("Empty Todo!");
     }
     else if( isDuplicate ) {
-        alert("This todo already exists");
+        showNotification("This todo already exists!");
     }
     else {
         if( EditTodoId >= 0 ) {
@@ -55,6 +59,10 @@ function saveTodo() {
 
 // RENDER TODOS
 function renderTodos() {
+    if( todos.length === 0 ) {
+        todosListEl.innerHTML = `<center>Nothing to do!</center>`;
+        return;
+    }
     todosListEl.innerHTML = ``;
     todos.forEach((todo, index) => {
         todosListEl.innerHTML += `
@@ -115,4 +123,13 @@ function deleteTodo(todoId) {
     todos = todos.filter((todo, index) => index != todoId);
     EditTodoId = -1;
     renderTodos();
+}
+
+// SHOW A NOTIFICATION
+function showNotification(msg) {
+    notificationEl.innerHTML = msg;
+    notificationEl.classList.add('notif-enter');
+    setTimeout(()=> {
+        notificationEl.classList.remove('notif-enter');
+    }, 2000);
 }
