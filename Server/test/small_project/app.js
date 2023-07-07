@@ -56,3 +56,14 @@ server.listen(PORT, () => {
  * If you open http://localhost:5000/api on a browser, 
  * you’ll be served the response as defined in the res.write()
  */
+
+/**
+ * Project Structure
+ * 
+ * \---vanilla-nodejs-rest-api
+ * |   app.js
+ * |   controller.js
+ * |   data.js
+ * |   utils.js
+ * No sub-folders exist
+ */
