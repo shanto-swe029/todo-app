@@ -9,7 +9,7 @@ const { showTasks, addTask, editTask, deleteTask, getTaskName, addUser, getUser 
 const app = express();
 
 app.use(express.json());
-app.use(express.static('./public'));
+app.use(express.static('./Client'));
 app.use(cookieParser());
 
 // middleware for verifying jwt
@@ -32,17 +32,16 @@ const cookieJwtAuth = (req, res, next) => {
 
 app.get('/home', cookieJwtAuth, (req, res) => {
     if (req.cookies && req.cookies['tokentodo']) {
-        res.sendFile(path.resolve(__dirname, 'public', 'home.html'))
+        res.sendFile(path.resolve(__dirname, 'Client', 'home.html'))
     }
     else {
         res.status(403).send("Access Denied!!")
     }
-
 })
 
 app.get('/edit/:id', cookieJwtAuth, (req, res) => {
     console.log("hello");
-    res.sendFile(path.resolve(__dirname, 'public', 'editPage.html'));
+    res.sendFile(path.resolve(__dirname, 'Client', 'editPage.html'));
 })
 
 app.get('/tasks', cookieJwtAuth, (req, res) => {
