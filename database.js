@@ -14,7 +14,7 @@ const pool = mysql.createPool({
     queueLimit: 0,
     enableKeepAlive: true,
     keepAliveInitialDelay: 0
-  }).promise();
+}).promise();
 
 const showTasks = async (email) => {
     let sql = `
